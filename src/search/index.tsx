@@ -1,10 +1,12 @@
-import Header from '@/layout/Header';
 import Footer from '@/layout/Footer';
+import Header from '@/layout/Header';
 import { useParams } from 'react-router-dom';
 import { useSearch } from './hooks/useSearch';
-import NoDataSkeleton from '@/favorite/components/empty-list';
+
+import { NoDataSkeleton } from '@/components/skeleton';
 import CardList from '@/favorite/components/card-list';
 import { useFavoriteMovie } from '@/features/favorite/hooks/use-post-favorite-movie';
+import { BufferSkeleton } from '@/motion';
 
 const Search = () => {
   const { keyword } = useParams();
@@ -12,10 +14,7 @@ const Search = () => {
   const { MovieResult, isPending } = useSearch(keyword?.toString() ?? '');
   const { AddMovie } = useFavoriteMovie();
 
-  if (isPending) return null;
-
-  if (!MovieResult) return null;
-  console.log(MovieResult);
+  if (isPending) return <BufferSkeleton />;
 
   return (
     <>
