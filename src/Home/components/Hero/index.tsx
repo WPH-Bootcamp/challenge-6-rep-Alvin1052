@@ -1,10 +1,12 @@
+import { ErrorSkeleton } from '@/components/skeleton';
 import { DetailButton, TrailerButton } from '../../../components/ui/Buttontest';
 import { useGetMovie } from '../../hooks/use-get-movie';
+import { BufferSkeleton } from '@/motion';
 
 const Hero = () => {
   const { heroMovie, isLoading } = useGetMovie();
-  if (!heroMovie) return <div>Data False</div>;
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <BufferSkeleton />;
+  if (!heroMovie) return <ErrorSkeleton />;
 
   return (
     <div className='relative  w-full h-133.25  -mt-16 flex lg:h-202.5 lg:-mt-23'>
@@ -16,7 +18,7 @@ const Hero = () => {
         />
         <div className='bg-linear-to-t from-black to-transparent to-100%  absolute inset-0 bg-opacity-50' />
       </div>
-      <div className='relative w-90.25 place-content-center mx-4 flex flex-col gap-6 lg:ml-35'>
+      <div className='relative w-90.25 place-content-center mx-4 flex flex-col gap-6 lg:ml-11xl'>
         <div className='flex flex-col gap-4 max-w-full'>
           <b className='text-l text-neutral-50 text-bold  lg:text-3xl'>
             {heroMovie?.title}

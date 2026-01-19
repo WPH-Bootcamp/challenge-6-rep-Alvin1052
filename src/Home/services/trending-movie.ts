@@ -13,5 +13,6 @@ export const getTrendingMovie = async (
   params?: TParameters
 ): Promise<TGetTrendingMovieResponse> => {
   const res = await api.get(`/trending/movie/${time_window}`, params);
+
   return res.data;
 };

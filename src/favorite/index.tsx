@@ -1,22 +1,22 @@
 import { useFavoriteMovie } from '@/features/favorite/hooks/use-post-favorite-movie';
 import Footer from '@/layout/Footer';
 import Header from '@/layout/Header';
+import { BufferSkeleton } from '@/motion';
 import CardList from './components/card-list';
-import NoDataSkeleton from './components/empty-list';
+import { NoDataSkeleton } from '@/components/skeleton';
 
 const Favorite = () => {
   const { ListFavoriteMovie, AddMovie, isLoading } = useFavoriteMovie();
 
-  if (isLoading) return <div>Loading...</div>;
-  if (!ListFavoriteMovie) return;
+  if (isLoading) return <BufferSkeleton />;
 
   return (
-    <div className='min-h-screen '>
+    <div className='min-h-screen w-full '>
       <Header />
       {ListFavoriteMovie?.results?.length === 0 ? (
         <NoDataSkeleton />
       ) : (
-        <div className='lg:px-11xl px-4 lg:-mt-23.75 lg:py-23.75 -mt-[64px] pt-[64px] min-h-screen  '>
+        <div className='w-full lg:px-11xl px-4  lg:py-5   pt-[64px] min-h-screen  '>
           {/* Movie New Release Now */}
 
           <strong className='text-3xl text-white'>Favorite</strong>

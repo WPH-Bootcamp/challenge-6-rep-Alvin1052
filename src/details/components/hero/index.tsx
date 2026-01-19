@@ -64,12 +64,20 @@ const Hero: React.FC<THeroProps> = ({
         <div className='flex gap-4 lg:justify-start justify-center'>
           <TrailerButton id={id} className='lg:hidden' />
           <FavoriteButton
+            className='group'
             onClick={() => {
               console.log('hello');
               handleFavorite();
             }}
           >
-            {isFavorite ? <FcLike size={24} /> : <Heart size={24} />}
+            {isFavorite ? (
+              <FcLike
+                className='group-hover:shadow-red-500/60 group-hover:shadow-2xl'
+                size={24}
+              />
+            ) : (
+              <Heart size={24} />
+            )}
           </FavoriteButton>
         </div>
         {/* Rating Genre Age Limit */}
