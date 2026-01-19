@@ -80,11 +80,15 @@ const Header = () => {
           />
           {/* Search Box */}
           <div
-            className={`lg:w-60.75 lg:h-14 lg:bg-neutral-800 lg:flex lg:text-neutral-500 lg:items-center lg:pl-4 lg:rounded-2xl hidden gap-2 ${
+            className={` lg:w-60.75 lg:h-14 lg:bg-black lg:flex lg:text-neutral-500 lg:items-center lg:pl-4 lg:rounded-2xl hidden gap-2 ${
               isActiveSearch ? 'flex!' : 'hidden'
             }   `}
           >
-            <img className='w-6 h-6 ' src='../Icons/Search.svg' alt='search' />
+            <img
+              className='w-6 h-6 group-focus:opacity-0 '
+              src='../Icons/Search.svg'
+              alt='search'
+            />
 
             <input
               id='search'

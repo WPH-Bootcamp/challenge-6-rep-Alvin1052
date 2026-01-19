@@ -7,11 +7,10 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { useGetMovie } from '../../hooks/use-get-movie';
+import { SkeletonCard } from '@/components/skeleton';
 
 const TrendingNow = () => {
   const { listMovie, isLoading } = useGetMovie();
-  if (isLoading) return <div>Loading...</div>;
-  if (!listMovie) return <div>Data False</div>;
 
   return (
     <div id='Trending' className='custom-container pb-20   '>
@@ -21,16 +20,18 @@ const TrendingNow = () => {
 
       <Carousel className=' snap-x snap-mandatory touch-pan-x'>
         <CarouselContent className='text-white  flex my-10 gap-5 snap-center w-full '>
-          {listMovie.map((movie, i) => (
-            <CarouselItem
-              key={i}
-              className='flex flex-col gap-2 lg:gap-3 snap-start'
-            >
-              <Card movie={movie} i={i} index={true} />
-            </CarouselItem>
-          ))}
+          {isLoading
+            ? Array(5).map((_, i) => <SkeletonCard key={i} />)
+            : listMovie?.map((movie, i) => (
+                <CarouselItem
+                  key={i}
+                  className='flex flex-col gap-2 lg:gap-3 snap-start'
+                >
+                  <Card movie={movie} i={i} index={true} />
+                </CarouselItem>
+              ))}
         </CarouselContent>
-        <CarouselNext className='bg-[#0A0D12]/60 text-neutral-50' />
+        <CarouselNext className='bg-[#0A0D12]/60 ' />
         <CarouselPrevious className='bg-[#0A0D12]/60' />
       </Carousel>
     </div>

@@ -1,11 +1,9 @@
+import { SkeletonCard } from '@/components/skeleton';
 import Card from '@/components/ui/Card';
 import { useNewReleaseMovie } from '@/Home/hooks/use-new-release';
 
 const NewRelease = () => {
   const { listMovie, isLoading } = useNewReleaseMovie();
-
-  if (isLoading) return <div>Loading...</div>;
-  if (!listMovie) return <div>Data False</div>;
 
   return (
     <div
@@ -19,9 +17,11 @@ const NewRelease = () => {
         className='text-white  grid grid-cols-2
       lg:grid-cols-5  gap-5 mt-10'
       >
-        {listMovie.map((movie, i) => (
-          <Card movie={movie} i={i} key={i} index={false} />
-        ))}
+        {isLoading
+          ? Array(5).map((_, i) => <SkeletonCard key={i} />)
+          : listMovie?.map((movie, i) => (
+              <Card movie={movie} i={i} key={i} index={false} />
+            ))}
       </div>
     </div>
   );

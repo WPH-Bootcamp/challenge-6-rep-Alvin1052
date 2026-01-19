@@ -20,7 +20,7 @@ const CardList: React.FC<CardlistProps> = ({ movie, handleFavorite }) => {
   } = movie;
 
   return (
-    <div className='flex flex-col lg:flex-row gap-6 lg:justify-between'>
+    <div className='group flex flex-col lg:flex-row gap-6 lg:justify-between hover:cursor-pointer'>
       {/* <Link to={`/movie/${movie.id}`}> */}
       {/* Content */}
       <div className='flex gap-4 lg:w-244.5'>
@@ -28,13 +28,13 @@ const CardList: React.FC<CardlistProps> = ({ movie, handleFavorite }) => {
 
         {poster_path ? (
           <img
-            className='w-26 h-39 lg:w-45.5 lg:h-67.5  rounded-xl object-cover object-center '
+            className='w-26 h-39 lg:w-45.5 lg:h-67.5  rounded-xl object-cover object-center group-hover:scale-105 transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:shadow-neutral-500/50'
             src={poster_path}
             alt={title}
           />
         ) : (
           <img
-            className='w-26 h-39 lg:w-45.5 lg:h-67.5  rounded-xl object-contain object-center'
+            className='w-26 h-39 lg:w-45.5 lg:h-67.5  rounded-xl object-contain object-center group-hover:scale-105 transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:shadow-neutral-500/50'
             src='../Icons/movieIcon.svg'
             alt=''
           />
@@ -58,7 +58,14 @@ const CardList: React.FC<CardlistProps> = ({ movie, handleFavorite }) => {
       <div className=' flex  gap-4 justify-center '>
         <TrailerButton id={id} className='lg:hidden' />
         <FavoriteButton onClick={handleFavorite}>
-          {isFavorite ? <FcLike size={24} /> : <Heart size={24} />}
+          {isFavorite ? (
+            <FcLike
+              className='group-hover:shadow-red-500/60 group-hover:shadow-2xl'
+              size={24}
+            />
+          ) : (
+            <Heart size={24} />
+          )}
         </FavoriteButton>
       </div>
     </div>
