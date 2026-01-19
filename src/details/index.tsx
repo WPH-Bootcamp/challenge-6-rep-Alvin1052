@@ -1,12 +1,13 @@
+import { useFavoriteMovie } from '@/features/favorite/hooks/use-post-favorite-movie';
 import Footer from '@/layout/Footer';
 import Header from '@/layout/Header';
+import { BufferSkeleton } from '@/motion';
 import { useParams } from 'react-router-dom';
 import CastcrewCard from './components/cast-crew';
 import Hero from './components/hero';
 import Overview from './components/overview';
 import { useGetMovieDetails } from './hooks/use-get-details';
 import type { TCast } from './types';
-import { useFavoriteMovie } from '@/features/favorite/hooks/use-post-favorite-movie';
 
 const Details = () => {
   const { id } = useParams();
@@ -17,16 +18,15 @@ const Details = () => {
 
   const isFavorite: boolean = movieDetails?.status?.favorite || false;
 
-  const { ListFavoriteMovie, AddMovie } = useFavoriteMovie();
+  const { AddMovie } = useFavoriteMovie();
 
-  if (isLoading) return <div>Loading...</div>;
-  if (!movieDetails) return <div>Data False</div>;
-  console.log('ListFavoriteMovie', ListFavoriteMovie?.results);
+  if (isLoading) return <BufferSkeleton />;
+  if (!movieDetails) return <BufferSkeleton />;
 
   return (
     <>
       <Header />
-      <div className='relative h-398.25 bg-black py-10 lg:-mt-37.5 -mt-27.5 '>
+      <div className='relative lg:h-398.25 bg-black py-10 lg:-mt-37.5 -mt-27.5 '>
         {/* Backdrop Image */}
         <div className='relative  w-full max-h-202.5'>
           <img
@@ -37,7 +37,7 @@ const Details = () => {
           <div className='bg-linear-to-t from-black to-transparent to-100%  absolute inset-0 bg-opacity-50' />
         </div>
         {/* Details */}
-        <div className=' lg:absolute gap-[48px] flex flex-col lg:w-290 lg:left-[9.8%] lg:top-1/3 mx-5'>
+        <div className=' lg:absolute gap-[48px] flex flex-col lg:w-290 lg:left-1/2 lg:-translate-x-1/2 lg:top-1/3 mx-5 '>
           <Hero
             id={movieDetails.id}
             genres={movieDetails.genres}

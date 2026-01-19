@@ -1,7 +1,6 @@
+import type { Tmovie } from '@/Home/types';
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import type { Tmovie } from '@/Types';
 
 interface Card {
   movie: Tmovie;
@@ -15,11 +14,11 @@ const Card: React.FC<Card> = ({ movie, i, index }) => {
       to={`/movie/${movie.id}`}
       key={i}
       id={`${i}`}
-      className='relative w-54 h-99.25   flex flex-col gap-2 lg:gap-3 snap-start '
+      className='group relative w-54 h-99.25 flex flex-col gap-2 lg:gap-3 snap-start transition hover:scale-103 ease-in-out duration-300 hover:shadow-2xl  hover:cursor-pointer'
     >
       {/* Image */}
       <img
-        className={` rounded-2xl w-54  object-contain`}
+        className={` rounded-2xl w-54  object-contain group-hover:shadow-2xl group-hover:shadow-neutral-500/50`}
         src={movie.poster_path}
         alt=''
       />

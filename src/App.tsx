@@ -4,6 +4,7 @@ import Details from './details';
 import Favorite from './favorite';
 import Search from './search';
 import Home from './Home';
+import Playground from './playground';
 function App() {
   return (
     <Routes>
@@ -11,6 +12,7 @@ function App() {
       <Route path='/movie/:id' element={<Details />} />
       <Route path='/favorite' element={<Favorite />} />
       <Route path='/search/:keyword' element={<Search />} />
+      <Route path='/test' element={<Playground />} />
     </Routes>
   );
 }
